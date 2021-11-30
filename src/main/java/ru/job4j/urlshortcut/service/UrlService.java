@@ -41,10 +41,9 @@ public class UrlService {
         return urlStatRepository.findByUrl(url);
     }
 
-    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @Transactional
     public void updateStats(Url url) {
-        UrlStat urlStat = urlStatRepository.findByUrl(url);
-        urlStat.setNumOfHits(urlStat.getNumOfHits() + 1);
+       urlStatRepository.updateNumberOfHits(url);
     }
 
     public void createUrlStats(Url urlObj) {
